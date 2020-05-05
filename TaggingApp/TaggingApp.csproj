@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 

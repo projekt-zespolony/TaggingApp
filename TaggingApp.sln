@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaggingApp", "TaggingApp\TaggingApp.csproj", "{756E36A6-8A00-4D7E-BD9F-8EAD7EEB9834}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagging", "Tagging\Tagging.csproj", "{9EE4DFD2-E1D5-406C-8B51-E1E4E821B071}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{756E36A6-8A00-4D7E-BD9F-8EAD7EEB9834}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{756E36A6-8A00-4D7E-BD9F-8EAD7EEB9834}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{756E36A6-8A00-4D7E-BD9F-8EAD7EEB9834}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{756E36A6-8A00-4D7E-BD9F-8EAD7EEB9834}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EE4DFD2-E1D5-406C-8B51-E1E4E821B071}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EE4DFD2-E1D5-406C-8B51-E1E4E821B071}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EE4DFD2-E1D5-406C-8B51-E1E4E821B071}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EE4DFD2-E1D5-406C-8B51-E1E4E821B071}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
