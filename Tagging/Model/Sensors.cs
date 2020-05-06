@@ -6,13 +6,19 @@ using System.Threading.Tasks;
 
 namespace Tagging.Model
 {
+    [Serializable]
     public class Sensors
     {
-        private long Timestamp { get; }
-        private float Temperature { get; }
-        private float Pressure { get; }
-        private float Humidity { get; }
-        private float Gas { get; }
+        public long Timestamp { get; set; }
+        public float Temperature { get; set; }
+        public float Pressure { get; set; }
+        public float Humidity { get; set; }
+        public float Gas { get; set; }
+        
+        public Sensors()
+        {
+
+        }
 
         public Sensors(long timestamp, float temperature, float pressure, float humidity, float gas)
         {
