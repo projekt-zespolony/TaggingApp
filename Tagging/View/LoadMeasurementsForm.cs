@@ -7,13 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tagging.Presenters;
 
 namespace Tagging.View
 {
     public partial class LoadMeasurementsForm : Form
     {
-        public LoadMeasurementsForm()
+        private SensorsPresenter _sensorsPresenter;
+
+        public LoadMeasurementsForm(SensorsPresenter sensorsPresenter)
         {
+            _sensorsPresenter = sensorsPresenter;
             InitializeComponent();
         }
 
@@ -29,12 +33,18 @@ namespace Tagging.View
 
         private void StartTimeTextBox_Leave(object sender, EventArgs e)
         {
-            StartTimeTextBox.Text = "day.month/hours:minutes";
+            if(String.IsNullOrWhiteSpace(StartTimeTextBox.Text)) StartTimeTextBox.Text = "day.month/hours:minutes";
         }
 
         private void EndTimeTextBox_Leave(object sender, EventArgs e)
         {
-            EndTimeTextBox.Text = "day.month/hours:minutes";
+            if (String.IsNullOrWhiteSpace(EndTimeTextBox.Text)) EndTimeTextBox.Text = "day.month/hours:minutes";
+        }
+
+        private void FinishButton_Click(object sender, EventArgs e)
+        {
+            _sensorsPresenter.LoadMeasurements(StartTimeTextBox.Text, EndTimeTextBox.Text);
+            this.Close();
         }
     }
 }

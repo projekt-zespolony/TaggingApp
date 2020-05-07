@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tagging.Helpers;
+using Tagging.Presenters;
+using Tagging.Services;
 using Tagging.View;
 
 namespace Tagging
@@ -20,7 +23,8 @@ namespace Tagging
 
         private void LoadMesurementsButton_Click(object sender, EventArgs e)
         {
-            new LoadMeasurementsForm().ShowDialog();
+            var sensorsPresenter = new SensorsPresenter(this, new DataRequestService(), new SensorsConversionHelper());
+            new LoadMeasurementsForm(sensorsPresenter).ShowDialog();
         }
     }
 }

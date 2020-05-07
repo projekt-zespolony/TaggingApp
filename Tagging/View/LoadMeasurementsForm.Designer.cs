@@ -66,6 +66,7 @@
             this.FinishButton.TabIndex = 2;
             this.FinishButton.Text = "Finish";
             this.FinishButton.UseVisualStyleBackColor = true;
+            this.FinishButton.Click += new System.EventHandler(this.FinishButton_Click);
             // 
             // StartTimeTextBox
             // 
