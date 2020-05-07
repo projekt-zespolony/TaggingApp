@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tagging.View;
 
 namespace Tagging
 {
@@ -15,6 +16,11 @@ namespace Tagging
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void LoadMesurementsButton_Click(object sender, EventArgs e)
+        {
+            new LoadMeasurementsForm().ShowDialog();
         }
     }
 }

@@ -104,6 +104,7 @@
             this.LoadMesurementsButton.TabIndex = 4;
             this.LoadMesurementsButton.Text = "Load Measurements";
             this.LoadMesurementsButton.UseVisualStyleBackColor = true;
+            this.LoadMesurementsButton.Click += new System.EventHandler(this.LoadMesurementsButton_Click);
             // 
             // SelectAllButton
             // 
