@@ -17,5 +17,24 @@ namespace Tagging.View
             InitializeComponent();
         }
 
+        private void EndTimeTextBox_Click(object sender, EventArgs e)
+        {
+            EndTimeTextBox.Text = "";
+        }
+
+        private void StartTimeTextBox_Click(object sender, EventArgs e)
+        {
+            StartTimeTextBox.Text = "";
+        }
+
+        private void StartTimeTextBox_Leave(object sender, EventArgs e)
+        {
+            StartTimeTextBox.Text = "day.month/hours:minutes";
+        }
+
+        private void EndTimeTextBox_Leave(object sender, EventArgs e)
+        {
+            EndTimeTextBox.Text = "day.month/hours:minutes";
+        }
     }
 }

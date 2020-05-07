@@ -75,6 +75,8 @@
             this.StartTimeTextBox.Size = new System.Drawing.Size(148, 20);
             this.StartTimeTextBox.TabIndex = 3;
             this.StartTimeTextBox.Text = "day.month/hours:minutes";
+            this.StartTimeTextBox.Click += new System.EventHandler(this.StartTimeTextBox_Click);
+            this.StartTimeTextBox.Leave += new System.EventHandler(this.StartTimeTextBox_Leave);
             // 
             // EndTimeTextBox
             // 
@@ -84,6 +86,8 @@
             this.EndTimeTextBox.Size = new System.Drawing.Size(148, 20);
             this.EndTimeTextBox.TabIndex = 4;
             this.EndTimeTextBox.Text = "day.month/hours:minutes";
+            this.EndTimeTextBox.Click += new System.EventHandler(this.EndTimeTextBox_Click);
+            this.EndTimeTextBox.Leave += new System.EventHandler(this.EndTimeTextBox_Leave);
             // 
             // LoadMeasurementsForm
             // 
