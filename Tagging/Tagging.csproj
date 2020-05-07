@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\SensorsConversionHelper.cs" />
     <Compile Include="Presenters\SensorsPresenter.cs" />
     <Compile Include="View\LoadMeasurementsForm.cs">
       <SubType>Form</SubType>
