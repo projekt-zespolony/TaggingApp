@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Castle.Core.Internal;
 
 namespace Tagging.Helpers
 {
@@ -13,10 +14,12 @@ namespace Tagging.Helpers
             int hour = 0;
             int minute = 0;
 
+            if (time.IsNullOrEmpty()) throw new ArgumentNullException();
+            if (!time.Contains(':')) throw new ArgumentException("Wrong Format");
+            if (!(time.Length == 5 || time.Length == 4 || time.Length == 3)) throw new ArgumentException("Wrong Format");
+
             for (int i = 0; i < time.Length; i++)
             {
-                
-
                 if (time[i] == ':')
                 {
                     try
