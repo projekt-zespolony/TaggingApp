@@ -49,5 +49,17 @@ namespace Tagging.Tests
 
             Assert.Throws<ArgumentException>(() => conversionHelper.ConvertTextBoxTimeToUnixTimestamp(time));
         }
+
+        [Fact]
+        public void ConvertTimestampToTextTimeFormat_ShouldReturnDateTime()
+        {
+            long timestamp = 1589151900; // 10.05.2020 23:05 UTC
+            var sensorsConversionHelper = new SensorsConversionHelper();
+
+            var expected = DateTime.Parse("05/10/2020 23:05:00").ToLocalTime();
+            var actual = sensorsConversionHelper.ConvertTimestampToTextTimeFormat(timestamp);
+
+            Assert.True(actual.ToString() == expected.ToString());
+        }
     }
 }

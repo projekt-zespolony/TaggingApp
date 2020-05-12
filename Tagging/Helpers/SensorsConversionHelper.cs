@@ -47,5 +47,12 @@ namespace Tagging.Helpers
 
             return ticks;
         }
+
+        public string ConvertTimestampToTextTimeFormat(long timestamp)
+        {
+            var dateTime = DateTime.Parse("01/01/1970 00:00:00");
+            dateTime = dateTime.AddSeconds(timestamp).ToLocalTime();
+            return dateTime.ToString();
+        }
     }
 }

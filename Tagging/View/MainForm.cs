@@ -17,27 +17,29 @@ namespace Tagging
 {
     public partial class MainForm : Form, IObserver
     {
-        private SensorsPresenter sensorsPresenter;
+        private SensorsPresenter _sensorsPresenter;
+        private ISensorsConversionHelper _conversionHelper;
 
         public MainForm()
         {
-            sensorsPresenter = new SensorsPresenter(new DataRequestService(), new SensorsConversionHelper());
-            sensorsPresenter.Subscribe(this);
+            _sensorsPresenter = new SensorsPresenter(new DataRequestService(), new SensorsConversionHelper());
+            _sensorsPresenter.Subscribe(this);
+            _conversionHelper = new SensorsConversionHelper();
             InitializeComponent();
         }
 
         private void LoadMesurementsButton_Click(object sender, EventArgs e)
         {
-            new LoadMeasurementsForm(sensorsPresenter).ShowDialog();
+            new LoadMeasurementsForm(_sensorsPresenter).ShowDialog();
         }
 
         public void UpdateView()
         {
-            foreach (var t in sensorsPresenter.SensorsList)
+            foreach (var t in _sensorsPresenter.SensorsList)
             {
                 string[] row =
                 {
-                    t.Timestamp.ToString(), t.Temperature.ToString(), t.Pressure.ToString(), t.Humidity.ToString(),
+                    _conversionHelper.ConvertTimestampToTextTimeFormat(t.Timestamp), t.Temperature.ToString(), t.Pressure.ToString(), t.Humidity.ToString(),
                     t.Gas.ToString()
                 };
 
