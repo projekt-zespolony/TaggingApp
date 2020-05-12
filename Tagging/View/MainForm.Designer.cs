@@ -121,6 +121,7 @@
             this.SelectAllButton.TabIndex = 5;
             this.SelectAllButton.Text = "Select All";
             this.SelectAllButton.UseVisualStyleBackColor = true;
+            this.SelectAllButton.Click += new System.EventHandler(this.SelectAllButton_Click);
             // 
             // RemoveSelectedButton
             // 

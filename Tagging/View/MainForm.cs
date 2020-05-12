@@ -47,5 +47,13 @@ namespace Tagging
                 this.MeasurementsListView.Items.Add(listViewItem);
             }
         }
+
+        private void SelectAllButton_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem t in this.MeasurementsListView.Items)
+            {
+                t.Selected = true;
+            }
+        }
     }
 }
