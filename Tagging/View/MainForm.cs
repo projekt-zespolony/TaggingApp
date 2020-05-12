@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tagging.Helpers;
+using Tagging.Model;
 using Tagging.ObserverPattern;
 using Tagging.Presenters;
 using Tagging.Services;
@@ -35,6 +36,9 @@ namespace Tagging
 
         public void UpdateView()
         {
+            this.MeasurementsListView.Items.Clear();
+
+            if(_sensorsPresenter.SensorsList.Count>0)
             foreach (var t in _sensorsPresenter.SensorsList)
             {
                 string[] row =
@@ -44,6 +48,7 @@ namespace Tagging
                 };
 
                 var listViewItem = new ListViewItem(row);
+                listViewItem.Tag = t;
                 this.MeasurementsListView.Items.Add(listViewItem);
             }
         }
@@ -53,6 +58,14 @@ namespace Tagging
             foreach (ListViewItem t in this.MeasurementsListView.Items)
             {
                 t.Selected = true;
+            }
+        }
+
+        private void RemoveSelectedButton_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem t in this.MeasurementsListView.Items)
+            {
+                if(t.Selected) _sensorsPresenter.RemoveSensorsAsync(t.Tag as Sensors);
             }
         }
     }

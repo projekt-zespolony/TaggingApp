@@ -39,6 +39,12 @@ namespace Tagging.Presenters
 
         }
 
+        public async Task RemoveSensorsAsync(Sensors sensors)
+        {
+            await Task.Run(()=>_sensorsList.Remove(sensors));
+            Notify();
+        }
+
         /// <summary>
         /// Loads Measurements with timestamp between startTime and endTime
         /// </summary>

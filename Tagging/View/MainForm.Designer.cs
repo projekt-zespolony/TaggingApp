@@ -131,6 +131,7 @@
             this.RemoveSelectedButton.TabIndex = 6;
             this.RemoveSelectedButton.Text = "Remove Selected";
             this.RemoveSelectedButton.UseVisualStyleBackColor = true;
+            this.RemoveSelectedButton.Click += new System.EventHandler(this.RemoveSelectedButton_Click);
             // 
             // TagSelectedButton
             // 
