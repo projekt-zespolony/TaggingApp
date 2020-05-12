@@ -51,6 +51,7 @@
             this.humidityHeader,
             this.airQualityHeader});
             this.MeasurementsListView.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MeasurementsListView.FullRowSelect = true;
             this.MeasurementsListView.HideSelection = false;
             this.MeasurementsListView.Location = new System.Drawing.Point(0, 0);
             this.MeasurementsListView.Name = "MeasurementsListView";
@@ -62,7 +63,7 @@
             // timeHeader
             // 
             this.timeHeader.Text = "Time";
-            this.timeHeader.Width = 86;
+            this.timeHeader.Width = 147;
             // 
             // temperatureHeader
             // 
