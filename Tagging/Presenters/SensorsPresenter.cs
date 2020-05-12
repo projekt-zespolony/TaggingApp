@@ -3,35 +3,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Castle.Core.Internal;
 using Tagging.Helpers;
 using Tagging.Model;
+using Tagging.ObserverPattern;
 using Tagging.Services;
 using Tagging.View;
 
 namespace Tagging.Presenters
 {
-    public class SensorsPresenter
+    public class SensorsPresenter : IObservable
     {
-        private MainForm _mainForm;
         private List<Sensors> _sensorsList;
+        private List<IObserver> _observers;
         private IDataRequestService _dataRequestService;
         private ISensorsConversionHelper _conversionHelper;
 
-        public SensorsPresenter(MainForm mainForm, IDataRequestService dataRequestService,
+        public SensorsPresenter(IDataRequestService dataRequestService,
             ISensorsConversionHelper conversionHelper)
         {
-            _mainForm = mainForm;
             _dataRequestService = dataRequestService;
             _conversionHelper = conversionHelper;
             _sensorsList = new List<Sensors>();
+            _observers = new List<IObserver>();
         }
 
         public List<Sensors> SensorsList
         {
             get { return _sensorsList;}
-            private set { _sensorsList = value; }
+            private set 
+            { 
+                _sensorsList = value;
+                Notify();
+            }
 
         }
+
         /// <summary>
         /// Loads Measurements with timestamp between startTime and endTime
         /// </summary>
@@ -61,5 +68,27 @@ namespace Tagging.Presenters
 
             SensorsList = sensorsList;
         }
+
+        #region IObservable members
+
+        public void Subscribe(IObserver observer)
+        {
+            if (observer != null) _observers.Add(observer);
+        }
+
+        public void Unsubscribe(IObserver observer)
+        {
+            if (observer != null) _observers.Remove(observer);
+        }
+
+        public void Notify()
+        {
+            foreach (var t in _observers)
+            {
+                t.UpdateView();
+            }
+        }
+
+        #endregion
     }
 }

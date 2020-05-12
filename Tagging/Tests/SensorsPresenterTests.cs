@@ -30,7 +30,7 @@ namespace Tagging.Tests
             sensorsConversionMock.Setup(x => x.ConvertTextBoxTimeToUnixTimestamp(endTime))
                 .Returns(1589154300);
 
-            var sensorsPresenter = new SensorsPresenter(new MainForm(), dataRequestMock.Object, sensorsConversionMock.Object);
+            var sensorsPresenter = new SensorsPresenter(dataRequestMock.Object, sensorsConversionMock.Object);
             sensorsPresenter.LoadMeasurements(startTime, endTime);
 
             Assert.True(sensorsPresenter.SensorsList.Count.Equals(2));

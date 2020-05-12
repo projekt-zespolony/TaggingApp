@@ -78,6 +78,8 @@
   <ItemGroup>
     <Compile Include="Helpers\ISensorsConversionHelper.cs" />
     <Compile Include="Helpers\SensorsConversionHelper.cs" />
+    <Compile Include="ObserverPattern\IObservable.cs" />
+    <Compile Include="ObserverPattern\IObserver.cs" />
     <Compile Include="Presenters\SensorsPresenter.cs" />
     <Compile Include="Services\IDataRequestService.cs" />
     <Compile Include="Tests\SensorsConversionHelperTests.cs" />
