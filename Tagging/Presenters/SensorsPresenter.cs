@@ -14,11 +14,11 @@ namespace Tagging.Presenters
     {
         private MainForm _mainForm;
         private List<Sensors> _sensorsList;
-        private DataRequestService _dataRequestService;
-        private SensorsConversionHelper _conversionHelper;
+        private IDataRequestService _dataRequestService;
+        private ISensorsConversionHelper _conversionHelper;
 
-        public SensorsPresenter(MainForm mainForm, DataRequestService dataRequestService,
-            SensorsConversionHelper conversionHelper)
+        public SensorsPresenter(MainForm mainForm, IDataRequestService dataRequestService,
+            ISensorsConversionHelper conversionHelper)
         {
             _mainForm = mainForm;
             _dataRequestService = dataRequestService;
@@ -26,6 +26,12 @@ namespace Tagging.Presenters
             _sensorsList = new List<Sensors>();
         }
 
+        public List<Sensors> SensorsList
+        {
+            get { return _sensorsList;}
+            private set { _sensorsList = value; }
+
+        }
         /// <summary>
         /// Loads Measurements with timestamp between startTime and endTime
         /// </summary>
@@ -46,14 +52,14 @@ namespace Tagging.Presenters
                 return;
             }
 
-            var sensorsList= _dataRequestService.GetSensors(24).Result;
+            var sensorsList= _dataRequestService.GetSensors(24);
 
             foreach (Sensors t in sensorsList.ToList())
             {
                 if (t.Timestamp < startTimestamp || t.Timestamp > endTimestamp) sensorsList.Remove(t);
             }
 
-            _sensorsList = sensorsList;
+            SensorsList = sensorsList;
         }
     }
 }

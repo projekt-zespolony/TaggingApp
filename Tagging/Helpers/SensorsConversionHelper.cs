@@ -7,7 +7,7 @@ using Castle.Core.Internal;
 
 namespace Tagging.Helpers
 {
-    public class SensorsConversionHelper
+    public class SensorsConversionHelper : ISensorsConversionHelper
     {
         public long ConvertTextBoxTimeToUnixTimestamp(string time)
         {

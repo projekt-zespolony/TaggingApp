@@ -76,9 +76,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\ISensorsConversionHelper.cs" />
     <Compile Include="Helpers\SensorsConversionHelper.cs" />
     <Compile Include="Presenters\SensorsPresenter.cs" />
+    <Compile Include="Services\IDataRequestService.cs" />
     <Compile Include="Tests\SensorsConversionHelperTests.cs" />
+    <Compile Include="Tests\SensorsPresenterTests.cs" />
     <Compile Include="View\LoadMeasurementsForm.cs">
       <SubType>Form</SubType>
     </Compile>

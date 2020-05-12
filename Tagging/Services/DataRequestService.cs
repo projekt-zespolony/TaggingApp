@@ -10,15 +10,12 @@ using System.Web.Script.Serialization;
 
 namespace Tagging.Services
 {
-    public class DataRequestService
+    public class DataRequestService : IDataRequestService
     {
         private string _url = "http://www.projekt-zespolowy.pl/sensors/";
 
-        public DataRequestService()
-        {
-        }
 
-        public async Task<List<Sensors>> GetSensors(int hours)
+        public List<Sensors> GetSensors(int hours)
         {
             using (HttpClient client = new HttpClient())
             {
