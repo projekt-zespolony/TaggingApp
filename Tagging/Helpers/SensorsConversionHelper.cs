@@ -40,7 +40,7 @@ namespace Tagging.Helpers
                 }
             }
 
-            var dateTime= new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hour, minute, 0);
+            var dateTime= new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hour, minute, 0).ToUniversalTime();
 
             long ticks = dateTime.Ticks - DateTime.Parse("01/01/1970 00:00:00").Ticks;
             ticks /= 10000000;
