@@ -14,7 +14,9 @@ namespace Tagging.Model
         public float Pressure { get; set; }
         public float Humidity { get; set; }
         public float Gas { get; set; }
-        
+        public bool? WindowsOpened { get; set; }
+        public bool? PeopleInTheRoom { get; set; }
+
         public Sensors()
         {
 

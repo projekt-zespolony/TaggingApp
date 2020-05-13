@@ -41,12 +41,17 @@ namespace Tagging
             if(_sensorsPresenter.SensorsList.Count>0)
             foreach (var t in _sensorsPresenter.SensorsList)
             {
+
                 string[] row =
                 {
-                    _conversionHelper.ConvertTimestampToTextTimeFormat(t.Timestamp), t.Temperature.ToString(), t.Pressure.ToString(), t.Humidity.ToString(),
-                    t.Gas.ToString()
+                    _conversionHelper.ConvertTimestampToTextTimeFormat(t.Timestamp), t.Temperature.ToString(),
+                    t.Pressure.ToString(), t.Humidity.ToString(),
+                    t.Gas.ToString(), "", ""
                 };
 
+                if (t.WindowsOpened != null) row[5] = t.WindowsOpened.ToString();
+                if (t.PeopleInTheRoom != null) row[6] = t.PeopleInTheRoom.ToString();
+                
                 var listViewItem = new ListViewItem(row);
                 listViewItem.Tag = t;
                 this.MeasurementsListView.Items.Add(listViewItem);
