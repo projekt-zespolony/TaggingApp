@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using Castle.Core.Internal;
 
 namespace Tagging.Helpers
@@ -11,41 +12,101 @@ namespace Tagging.Helpers
     {
         public long ConvertTextBoxTimeToUnixTimestamp(string time)
         {
+            int day = 0;
+            int month = 0;
             int hour = 0;
             int minute = 0;
 
             if (time.IsNullOrEmpty()) throw new ArgumentNullException();
-            if (!time.Contains(':')) throw new ArgumentException("Wrong Format");
-            if (!(time.Length == 5 || time.Length == 4 || time.Length == 3)) throw new ArgumentException("Wrong Format");
-
-            for (int i = 0; i < time.Length; i++)
+            if (time.Length>=7)
             {
-                if (time[i] == ':')
+                if (!time.Contains(':') || !time.Contains('/')) throw new ArgumentException("Wrong Format");
+
+                for (int i = 0; i < time.Length; i++)
                 {
-                    try
+                    if (time[i] == '/')
                     {
-                        hour = i == 2 ? Int32.Parse(time.Substring(0, 2)) :
-                            i == 1 ? Int32.Parse(time.Substring(0, 1)) : -1;
+                        try
+                        {
+                            day = i == 2 ? Int32.Parse(time.Substring(0, 2)) :
+                                i == 1 ? Int32.Parse(time.Substring(0, 1)) : -1;
 
-                        if (hour < 0 || hour > 23) throw new ArgumentException("Wrong Format");
+                            if (day < 0 || day > 31) throw new ArgumentException("Wrong Format");
 
-                        minute = Int32.Parse(time.Substring(i + 1));
+                            month = Int32.Parse(time.Substring(i + 1, time.IndexOf(' ') - i -1));
 
-                        if (minute < 0 || minute > 59) throw new ArgumentException("Wrong Format");
+                            if (month < 0 || month > 12) throw new ArgumentException("Wrong Format");
+                        }
+                        catch (Exception e)
+                        {
+                            throw new ArgumentException(e.Message);
+                        }
+
                     }
-                    catch (Exception e)
+                    else if (time[i] == ':')
                     {
-                        throw new ArgumentException(e.Message);
+                        try
+                        {
+                            hour = Int32.Parse(time.Substring(time.IndexOf(' ') + 1, i - time.IndexOf(' ') - 1));
+
+                            if (hour < 0 || hour > 23) throw new ArgumentException("Wrong Format");
+
+                            minute = Int32.Parse(time.Substring(i + 1));
+
+                            if (minute < 0 || minute > 59) throw new ArgumentException("Wrong Format");
+                        }
+                        catch (Exception e)
+                        {
+                            throw new ArgumentException(e.Message);
+                        }
+                    }
+
+                }
+
+                var dateTime = new DateTime(DateTime.Now.Year, month, day, hour, minute, 0).ToUniversalTime();
+
+                long ticks = dateTime.Ticks - DateTime.Parse("01/01/1970 00:00:00").Ticks;
+                ticks /= 10000000;
+
+                return ticks;
+            }
+            else if(time.Length>=3 && time.Length<=5)
+            {
+                if (!time.Contains(':')) throw new ArgumentException("Wrong Format");
+
+                for (int i = 0; i < time.Length; i++)
+                {
+                    if (time[i] == ':')
+                    {
+                        try
+                        {
+                            hour = i == 2 ? Int32.Parse(time.Substring(0, 2)) :
+                                i == 1 ? Int32.Parse(time.Substring(0, 1)) : -1;
+
+                            if (hour < 0 || hour > 23) throw new ArgumentException("Wrong Format");
+
+                            minute = Int32.Parse(time.Substring(i + 1));
+
+                            if (minute < 0 || minute > 59) throw new ArgumentException("Wrong Format");
+                        }
+                        catch (Exception e)
+                        {
+                            throw new ArgumentException(e.Message);
+                        }
                     }
                 }
+
+                var dateTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hour, minute, 0).ToUniversalTime();
+
+                long ticks = dateTime.Ticks - DateTime.Parse("01/01/1970 00:00:00").Ticks;
+                ticks /= 10000000;
+
+                return ticks;
             }
-
-            var dateTime= new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hour, minute, 0).ToUniversalTime();
-
-            long ticks = dateTime.Ticks - DateTime.Parse("01/01/1970 00:00:00").Ticks;
-            ticks /= 10000000;
-
-            return ticks;
+            else
+            {
+                throw new ArgumentException("Wrong Format");
+            }
         }
 
         public string ConvertTimestampToTextTimeFormat(long timestamp)

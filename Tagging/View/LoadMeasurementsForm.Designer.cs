@@ -60,7 +60,7 @@
             // FinishButton
             // 
             this.FinishButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FinishButton.Location = new System.Drawing.Point(54, 117);
+            this.FinishButton.Location = new System.Drawing.Point(77, 113);
             this.FinishButton.Name = "FinishButton";
             this.FinishButton.Size = new System.Drawing.Size(95, 37);
             this.FinishButton.TabIndex = 2;
@@ -73,9 +73,9 @@
             this.StartTimeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StartTimeTextBox.Location = new System.Drawing.Point(108, 28);
             this.StartTimeTextBox.Name = "StartTimeTextBox";
-            this.StartTimeTextBox.Size = new System.Drawing.Size(84, 20);
+            this.StartTimeTextBox.Size = new System.Drawing.Size(132, 20);
             this.StartTimeTextBox.TabIndex = 3;
-            this.StartTimeTextBox.Text = "hours:minutes";
+            this.StartTimeTextBox.Text = "dd/mm hours:minutes";
             this.StartTimeTextBox.Click += new System.EventHandler(this.StartTimeTextBox_Click);
             this.StartTimeTextBox.Leave += new System.EventHandler(this.StartTimeTextBox_Leave);
             // 
@@ -84,9 +84,9 @@
             this.EndTimeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EndTimeTextBox.Location = new System.Drawing.Point(108, 72);
             this.EndTimeTextBox.Name = "EndTimeTextBox";
-            this.EndTimeTextBox.Size = new System.Drawing.Size(84, 20);
+            this.EndTimeTextBox.Size = new System.Drawing.Size(132, 20);
             this.EndTimeTextBox.TabIndex = 4;
-            this.EndTimeTextBox.Text = "hours:minutes";
+            this.EndTimeTextBox.Text = "dd/mm hours:minutes";
             this.EndTimeTextBox.Click += new System.EventHandler(this.EndTimeTextBox_Click);
             this.EndTimeTextBox.Leave += new System.EventHandler(this.EndTimeTextBox_Leave);
             // 
@@ -94,7 +94,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(204, 173);
+            this.ClientSize = new System.Drawing.Size(251, 173);
             this.Controls.Add(this.EndTimeTextBox);
             this.Controls.Add(this.StartTimeTextBox);
             this.Controls.Add(this.FinishButton);

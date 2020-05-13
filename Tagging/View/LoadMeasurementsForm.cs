@@ -33,12 +33,12 @@ namespace Tagging.View
 
         private void StartTimeTextBox_Leave(object sender, EventArgs e)
         {
-            if(String.IsNullOrWhiteSpace(StartTimeTextBox.Text)) StartTimeTextBox.Text = "day.month/hours:minutes";
+            if(String.IsNullOrWhiteSpace(StartTimeTextBox.Text)) StartTimeTextBox.Text = "dd/mm hours:minutes";
         }
 
         private void EndTimeTextBox_Leave(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(EndTimeTextBox.Text)) EndTimeTextBox.Text = "day.month/hours:minutes";
+            if (String.IsNullOrWhiteSpace(EndTimeTextBox.Text)) EndTimeTextBox.Text = "dd/mm hours:minutes";
         }
 
         private void FinishButton_Click(object sender, EventArgs e)
