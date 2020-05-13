@@ -66,7 +66,7 @@ namespace Tagging.Presenters
             var measurements = new XElement("measurements");
             foreach (var t in sensorsList)
             {
-                var values = new XElement("values", new XAttribute("temperature",t.Temperature), new XAttribute("airPressure", t.Pressure)
+                var values = new XElement("values", new XAttribute("timestamp", t.Timestamp), new XAttribute("temperature",t.Temperature), new XAttribute("airPressure", t.Pressure)
                     , new XAttribute("humidity", t.Humidity), new XAttribute("airQuality", t.Gas));
 
                 var tags = new XElement("tags",
