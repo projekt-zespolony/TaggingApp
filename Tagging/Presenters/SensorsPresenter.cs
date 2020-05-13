@@ -63,7 +63,10 @@ namespace Tagging.Presenters
 
         public void SaveToFile(List<Sensors> sensorsList)
         {
-            var measurements = new XElement("measurements");
+            XElement measurements;
+            if (File.Exists("./Data.xml")) measurements=XElement.Load("./Data.xml");
+            else measurements = new XElement("measurements");
+
             foreach (var t in sensorsList)
             {
                 var values = new XElement("values", new XAttribute("timestamp", t.Timestamp), new XAttribute("temperature",t.Temperature), new XAttribute("airPressure", t.Pressure)
@@ -81,7 +84,7 @@ namespace Tagging.Presenters
                 measurements.Add(measurement);
             }
 
-            using (var stream = new FileStream("Data.xml", FileMode.Create))
+            using (var stream = new FileStream("Data.xml", FileMode.OpenOrCreate))
             {
                 var streamWriter = new StreamWriter(stream);
 
