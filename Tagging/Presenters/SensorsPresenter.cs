@@ -45,6 +45,18 @@ namespace Tagging.Presenters
             Notify();
         }
 
+        public void TagRange(List<Sensors> sensorsList, bool? windowsOpened, bool? peopleInTheRoom)
+        {
+            foreach (var t in sensorsList)
+            {
+                var sensors = SensorsList.Find(x=>x.Equals(t));
+                sensors.WindowsOpened = windowsOpened;
+                sensors.PeopleInTheRoom = peopleInTheRoom;
+            }
+
+            Notify();
+        }
+
         /// <summary>
         /// Loads Measurements with timestamp between startTime and endTime
         /// </summary>

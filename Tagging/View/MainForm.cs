@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
 using Tagging.Helpers;
 using Tagging.Model;
 using Tagging.ObserverPattern;
@@ -72,6 +74,38 @@ namespace Tagging
             {
                 if(t.Selected) _sensorsPresenter.RemoveSensorsAsync(t.Tag as Sensors);
             }
+        }
+
+        private void TagSelectedButton_Click(object sender, EventArgs e)
+        {
+            var selectedSensors = new List<Sensors>();
+
+            foreach (ListViewItem t in MeasurementsListView.SelectedItems)
+            {
+                selectedSensors.Add(t.Tag as Sensors);
+            }
+
+            var tagMeasurementsDialog = new TagMeasurementsForm(_sensorsPresenter);
+            tagMeasurementsDialog.ConfirmButton.Click += 
+                new EventHandler(delegate(object s, EventArgs args)
+                {
+                    bool? windowsOpened=null;
+                    bool? peopleInTheRoom=null;
+
+                    if (tagMeasurementsDialog.WindowsOpenedComboBox.SelectedIndex == 0) windowsOpened = false;
+                    else if (tagMeasurementsDialog.WindowsOpenedComboBox.SelectedIndex == 1) windowsOpened = true;
+
+                    if (tagMeasurementsDialog.PeopleInTheRoomComboBox.SelectedIndex == 0) peopleInTheRoom = false;
+                    else if (tagMeasurementsDialog.PeopleInTheRoomComboBox.SelectedIndex == 1) peopleInTheRoom = true;
+                        
+                    _sensorsPresenter.TagRange(selectedSensors,
+                            windowsOpened,
+                            peopleInTheRoom);
+
+                    tagMeasurementsDialog.Close();
+                    });
+
+            tagMeasurementsDialog.Show();
         }
     }
 }

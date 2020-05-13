@@ -34,13 +34,13 @@
             this.airPressureHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.humidityHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.airQualityHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.openWindowsHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.peopleInTheRoomHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.LoadMesurementsButton = new System.Windows.Forms.Button();
             this.SelectAllButton = new System.Windows.Forms.Button();
             this.RemoveSelectedButton = new System.Windows.Forms.Button();
             this.TagSelectedButton = new System.Windows.Forms.Button();
-            this.openWindowsHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.peopleInTheRoomHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.saveButton = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -89,6 +89,16 @@
             // 
             this.airQualityHeader.Text = "Air Quality";
             this.airQualityHeader.Width = 73;
+            // 
+            // openWindowsHeader
+            // 
+            this.openWindowsHeader.Text = "Open Windows";
+            this.openWindowsHeader.Width = 88;
+            // 
+            // peopleInTheRoomHeader
+            // 
+            this.peopleInTheRoomHeader.Text = "People in the room";
+            this.peopleInTheRoomHeader.Width = 109;
             // 
             // flowLayoutPanel1
             // 
@@ -141,16 +151,7 @@
             this.TagSelectedButton.TabIndex = 7;
             this.TagSelectedButton.Text = "Tag Selected";
             this.TagSelectedButton.UseVisualStyleBackColor = true;
-            // 
-            // openWindowsHeader
-            // 
-            this.openWindowsHeader.Text = "Open Windows";
-            this.openWindowsHeader.Width = 88;
-            // 
-            // peopleInTheRoomHeader
-            // 
-            this.peopleInTheRoomHeader.Text = "People in the room";
-            this.peopleInTheRoomHeader.Width = 109;
+            this.TagSelectedButton.Click += new System.EventHandler(this.TagSelectedButton_Click);
             // 
             // saveButton
             // 
