@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
 using Tagging.Helpers;
 using Tagging.Model;
@@ -43,20 +44,27 @@ namespace Tagging
             if(_sensorsPresenter.SensorsList.Count>0)
             foreach (var t in _sensorsPresenter.SensorsList)
             {
-
-                string[] row =
+                try
                 {
-                    _conversionHelper.ConvertTimestampToTextTimeFormat(t.Timestamp), t.Temperature.ToString(),
-                    t.Pressure.ToString(), t.Humidity.ToString(),
-                    t.Gas.ToString(), "", ""
-                };
+                    string[] row =
+                    {
+                        _conversionHelper.ConvertTimestampToTextTimeFormat(t.Timestamp), t.Temperature.ToString(),
+                        t.Pressure.ToString(), t.Humidity.ToString(),
+                        t.Gas.ToString(), "", ""
+                    };
 
-                if (t.WindowsOpened != null) row[5] = t.WindowsOpened.ToString();
-                if (t.PeopleInTheRoom != null) row[6] = t.PeopleInTheRoom.ToString();
-                
-                var listViewItem = new ListViewItem(row);
-                listViewItem.Tag = t;
-                this.MeasurementsListView.Items.Add(listViewItem);
+
+                    if (t.WindowsOpened != null) row[5] = t.WindowsOpened.ToString();
+                    if (t.PeopleInTheRoom != null) row[6] = t.PeopleInTheRoom.ToString();
+
+                    var listViewItem = new ListViewItem(row);
+                    listViewItem.Tag = t;
+                    this.MeasurementsListView.Items.Add(listViewItem);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Error", e.Message, MessageBoxButtons.OK);
+                }
             }
         }
 
@@ -117,7 +125,14 @@ namespace Tagging
                 sensorsList.Add(t.Tag as Sensors);
             }
 
-            _sensorsPresenter.SaveToFile(sensorsList);
+            try
+            {
+                _sensorsPresenter.SaveToFile(sensorsList);
+            }
+            catch (ArgumentException exception)
+            {
+                MessageBox.Show("Error", exception.Message, MessageBoxButtons.OK);
+            }
         }
     }
 }
