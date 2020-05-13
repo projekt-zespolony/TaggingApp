@@ -107,5 +107,17 @@ namespace Tagging
 
             tagMeasurementsDialog.Show();
         }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            var sensorsList = new List<Sensors>();
+
+            foreach (ListViewItem t in MeasurementsListView.Items)
+            {
+                sensorsList.Add(t.Tag as Sensors);
+            }
+
+            _sensorsPresenter.SaveToFile(sensorsList);
+        }
     }
 }

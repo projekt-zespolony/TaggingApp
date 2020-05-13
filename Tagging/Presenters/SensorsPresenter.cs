@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Linq;
+using Castle.Components.DictionaryAdapter.Xml;
 using Castle.Core.Internal;
 using Tagging.Helpers;
 using Tagging.Model;
@@ -55,6 +59,39 @@ namespace Tagging.Presenters
             }
 
             Notify();
+        }
+
+        public void SaveToFile(List<Sensors> sensorsList)
+        {
+            var measurements = new XElement("measurements");
+            foreach (var t in sensorsList)
+            {
+                var values = new XElement("values", new XAttribute("temperature",t.Temperature), new XAttribute("airPressure", t.Pressure)
+                    , new XAttribute("humidity", t.Humidity), new XAttribute("airQuality", t.Gas));
+
+                var tags = new XElement("tags",
+                    new XAttribute("windowsOpened",
+                        t.WindowsOpened == true ? 1 :
+                        t.WindowsOpened == false ? 0 : throw new ArgumentException("Tag not assigned to a value")),
+                    new XAttribute("peopleInTheRoom",
+                        t.PeopleInTheRoom == true ? 1 :
+                        t.PeopleInTheRoom == false ? 0 : throw new ArgumentException("Tag not assigned to a value")));
+
+                var measurement = new XElement("measurement", values, tags);
+                measurements.Add(measurement);
+            }
+
+            using (var stream = new FileStream("Data.xml", FileMode.Create))
+            {
+                var streamWriter = new StreamWriter(stream);
+
+                using (var xmlWriter = new XmlTextWriter(streamWriter))
+                {
+                    xmlWriter.Formatting = Formatting.Indented;
+                    xmlWriter.Indentation = 4;
+                    measurements.Save(xmlWriter);
+                }
+            }
         }
 
         /// <summary>
